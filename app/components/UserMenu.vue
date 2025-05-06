@@ -151,14 +151,22 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
   onClick: handleLogout
 }]]))
 
+const toast = useToast()
 const { logout, user } = useSanctumAuth();
 const handleLogout = async () => {
   try {
     await logout()
-    userStore.clearUser() ;
-    console.log('Logged out')
+    userStore.clearUser() 
+    toast.add({
+      title: 'Success',
+      description: 'Logout was a success',
+    })
   } catch (error) {
     console.error('Logout failed:', error)
+    toast.add({
+      title: 'Failed',
+      description: `Logout was Failed due to ${error}`,
+    })
   }
 }
 </script>
@@ -172,7 +180,7 @@ const handleLogout = async () => {
     <UButton
       v-bind="{
         ...preuser,
-        label: collapsed ? undefined : preuser?.name,
+        label: collapsed ? undefined : userStore?.user?.name ||'guest',
         trailingIcon: collapsed ? undefined : 'i-lucide-chevrons-up-down'
       }"
       color="neutral"

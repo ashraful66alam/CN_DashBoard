@@ -9,7 +9,6 @@ const handleLogout = async () => {
   try {
     await logout()
     userStore.clearUser() 
-    console.log('Logged out')
     toast.add({
       title: 'Success',
       description: 'Logout was a success',
