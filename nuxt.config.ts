@@ -18,6 +18,8 @@ export default defineNuxtConfig({
   },
   sanctum: {
     baseUrl: 'https://thecnportal.hwwserver.com/',//'http://localhost:8000',
+    // baseUrl: 'https://postgre.hwwserver.com/',
+    // baseUrl: 'http://127.0.0.1:8000/',
     mode:'token',
     userStateKey: 'sanctum.user.identity',
     redirectIfAuthenticated: false,
